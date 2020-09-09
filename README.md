@@ -1,2 +1,1 @@
-# crud-api
-CRUD API with Node.js, Express, MongoDB
+# CRUD API with Node.js, Express, MongoDB
