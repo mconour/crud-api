@@ -13,10 +13,13 @@ const faqs = db.get('faqs');
 const router = express.Router();
 
 // read all
-router.get('/', (req, res, next) => {
-    res.json({
-        message: `read all`,
-    });
+router.get('/', async (req, res, next) => {
+    try {
+        const items = await faqs.find({});
+        res.json(items)
+    } catch (error) {
+        next(error);
+    }
 });
 
 // read one
