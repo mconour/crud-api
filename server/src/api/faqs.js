@@ -1,4 +1,13 @@
 const express = require('express');
+const monk = require('monk');
+
+
+// bring in monk and connect to database
+const db = monk(process.env.MONGO_URI);
+
+// accessing specific collection
+const faqs = db.get('faqs');
+
 
 // create a router
 const router = express.Router();
