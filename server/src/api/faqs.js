@@ -13,7 +13,7 @@ const faqs = db.get('faqs');
 const schema = Joi.object({
     question: Joi.string().trim().required(),
     answer: Joi.string().trim().required(),
-    video_url: Joi.string(),
+    video_url: Joi.string().uri(),
 });
 
 
@@ -38,11 +38,14 @@ router.get('/:id', (req, res, next) => {
 });
 
 // create 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
-
+        // console.log(req.body);
+        const value = await schema.validateAsync(req.body);
+        const inserted = await faqs.insert(value);
+        res.json(value);
     } catch (error) {
-
+        next(error);
     }
 });
 
