@@ -32,16 +32,18 @@ router.get('/', async (req, res, next) => {
 
 // read one
 router.get('/:id', async (req, res, next) => {
-   try {
-      const { id } = req.params;
-      const item = await faqs.findOne({
-          _id: id,
-      })
-      if(!item) return next();
-      return res.json(item);      
-   } catch (error) {
-       next(error);
-   }
+    try {
+        const {
+            id
+        } = req.params;
+        const item = await faqs.findOne({
+            _id: id,
+        });
+        if (!item) return next();
+        return res.json(item);
+    } catch (error) {
+        next(error);
+    }
 });
 
 // create 
@@ -50,24 +52,46 @@ router.post('/', async (req, res, next) => {
         // console.log(req.body);
         const value = await schema.validateAsync(req.body);
         const inserted = await faqs.insert(value);
-        res.json(value);
+        res.json(inserted);
     } catch (error) {
         next(error);
     }
 });
 
 // update 
-router.put('/:id', (req, res, next) => {
-    res.json({
-        message: `update one`,
-    });
+router.put('/:id', async (req, res, next) => {
+    try {
+        const {
+            id
+        } = req.params;
+        const value = await schema.validateAsync(req.body);
+        const item = await faqs.findOne({
+            _id: id,
+        })
+        if (!item) return next();
+        await faqs.update({
+            _id: id,
+        }, {
+            $set: 
+                value,            
+        });
+        res.json(value);
+    } catch (error) {
+        next(error);
+    }
 });
 
 // delete
-router.delete('/:id', (req, res, next) => {
-    res.json({
-        message: `delete one`,
-    });
+router.delete('/:id', async (req, res, next) => {
+   try {
+       const {id} = req.params;
+       await faqs.remove({_id: id});
+       res.json({
+           message: `Deleted!`
+       })
+   } catch (error) {
+    next(error);   
+   }
 });
 
 
