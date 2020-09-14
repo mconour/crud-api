@@ -1,6 +1,4 @@
-# A CRUD Application
-
-<!-- CRUD API with Node.js, Express, MongoDB -->
+# CRUD Application
 
 **Backend:**
 ```
