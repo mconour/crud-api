@@ -9,5 +9,6 @@ Other: Node, Express, MongoDB
 
 **Frontend:**
 ```
+Frameworks: Bulma
 Other: Vue.js and Vue Composition API
 ```
