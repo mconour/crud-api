@@ -2,6 +2,8 @@
 import Vue from 'vue';
 import VueCompositionAPI from '@vue/composition-api';
 
+import 'bulma/css/bulma.css';
+
 Vue.use(VueCompositionAPI);
 
 import App from './App.vue';
