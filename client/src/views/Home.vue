@@ -1,6 +1,6 @@
 <template>
 <div class="home">
-  <button class="button is-warning mx-5 my-5">Create</button>
+  <router-link :to="{ name: 'create'}" class="button is-warning mx-5 my-5">Create</router-link>
     <FAQList />
 </div>
 </template>
