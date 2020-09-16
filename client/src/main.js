@@ -1,7 +1,6 @@
-/*  eslint-disable import/first  */
+/* eslint-disable import/first */
 import Vue from 'vue';
 import VueCompositionAPI from '@vue/composition-api';
-import 'bulma/css/bulma.css';
 
 Vue.use(VueCompositionAPI);
 

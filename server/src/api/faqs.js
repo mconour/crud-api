@@ -16,7 +16,6 @@ const schema = Joi.object({
     video_url: Joi.string().uri(),
 });
 
-
 // create a router
 const router = express.Router();
 
