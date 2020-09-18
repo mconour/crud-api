@@ -1,13 +1,20 @@
 <template>
 <!-- eslint-disable max-len -->
-   <FAQForm :faq="faq" :submitForm="createFAQ" />
+   <FAQForm
+   :faq="faq"
+   :submitForm="createFAQ"
+   />
 </template>
 
 <script>
+import FAQForm from '@/components/FAQForm.vue';
 import { ref } from '@vue/composition-api';
 import { useRouter } from '@u3u/vue-hooks';
 
 export default {
+  components: {
+    FAQForm,
+  },
   setup() {
     const { router } = useRouter();
     const question = ref('');
@@ -37,8 +44,10 @@ export default {
     }
 
     return {
-      question,
-      answer,
+      faq: {
+        question,
+        answer,
+      },
       createFAQ,
     };
   },
