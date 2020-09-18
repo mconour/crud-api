@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="card" v-for="faq in faqs" :key="faq._id">
+    <div class="card my-2" v-for="faq in faqs" :key="faq._id">
         <div class="card-content">
             <div class="media">
                 <div class="media-content">
@@ -11,6 +11,7 @@
             <div class="content">
                 {{faq.answer}}
             </div>
+            <button @click="removeFAQ(faq._id)" class="button is-success">Delete</button>
         </div>
     </div>
 </div>
@@ -31,10 +32,18 @@ export default {
       faqs.value = json;
     }
 
+    async function removeFAQ(_id) {
+      await fetch(`${API_URL}/${_id}`, {
+        method: 'DELETE',
+      });
+      getFAQS();
+    }
+
     getFAQS();
 
     return {
       faqs,
+      removeFAQ,
     };
   },
 };
